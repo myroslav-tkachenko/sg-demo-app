@@ -25,12 +25,14 @@ foreach ($feed_urls as $feed_url) {
     $items = $feed->get_items();
 
     foreach ($items as $item) {
-        $stmt->execute([
-            $item->get_title(),
-            $item->get_link(),
-            $item->get_description(),
-            $feed->get_link(),
-            $item->get_date("Y-m-d H:i:s"),
-        ]);
+        if (! $db->query("SELECT id FROM news WHERE link = '{$item->get_link()}'")->fetch()) {
+            $stmt->execute([
+                $item->get_title(),
+                $item->get_link(),
+                $item->get_description(),
+                $feed->get_link(),
+                $item->get_date("Y-m-d H:i:s"),
+            ]);
+        }
     }
 }

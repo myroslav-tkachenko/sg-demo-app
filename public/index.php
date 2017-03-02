@@ -1,7 +1,7 @@
 <?php
 
 $db = new PDO("mysql:host=localhost;dbname=rss_news;charset=utf8", "root", "123");
-$sql = "SELECT * FROM news ORDER BY pub_date DESC, id DESC LIMIT 25";
+$sql = "SELECT * FROM news ORDER BY pub_date DESC, id DESC LIMIT 50";
 $stmt = $db->prepare($sql);
 $stmt->execute();
 
