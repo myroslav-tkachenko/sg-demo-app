@@ -1,5 +1,5 @@
 # create database
-create database rss_news character set utf8 collate utf8_general_ci;
+CREATE DATABASE rss_news CHARACTER SET utf8 COLLATE utf8_general_ci;
 
 # create table
 CREATE TABLE `news` (
@@ -12,3 +12,9 @@ CREATE TABLE `news` (
 
 # add index
 ALTER TABLE `news` ADD UNIQUE `link` (`link`);
+
+# update table: add column
+ALTER TABLE `news` ADD `pub_date` timestamp NOT NULL;
+
+# update table: change column
+ALTER TABLE `news` CHANGE `pub_date` `pub_date` datetime NOT NULL AFTER `source`;
