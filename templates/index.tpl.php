@@ -24,6 +24,7 @@
                 <div class="panel panel-default">
                       <div class="panel-heading">
                             <h3 class="panel-title">
+                                <?=$item['id']?>
                                 <b><?=$item['pub_date']?></b>:
                                 <?=$item['title']?>
                             </h3>
