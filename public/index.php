@@ -5,6 +5,6 @@ $sql = "SELECT * FROM news ORDER BY pub_date DESC";
 $stmt = $db->prepare($sql);
 $stmt->execute();
 
-echo '<pre>';
-print_r($stmt->fetchAll(PDO::FETCH_ASSOC));
-echo '</pre>';
+$items = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+include_once '../templates/index.tpl.php';
