@@ -13,8 +13,12 @@ CREATE TABLE `news` (
 # add index
 ALTER TABLE `news` ADD UNIQUE `link` (`link`);
 
-# update table: add column
+# alter table: add column
 ALTER TABLE `news` ADD `pub_date` timestamp NOT NULL;
 
-# update table: change column
+# alter table: change column
 ALTER TABLE `news` CHANGE `pub_date` `pub_date` datetime NOT NULL AFTER `source`;
+
+# alter table: change column type
+ALTER TABLE `news`
+CHANGE `description` `description` mediumtext COLLATE 'utf8_general_ci' NOT NULL AFTER `link`; 
