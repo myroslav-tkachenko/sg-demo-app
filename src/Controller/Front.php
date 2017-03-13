@@ -9,7 +9,6 @@ class Front
 {
     public function getIndex($request, $response)
     {
-
         $db = new PDO("mysql:host=localhost;dbname=rss_news;charset=utf8", "root", "123");
         $sql = "SELECT * FROM news ORDER BY id DESC LIMIT 50";
         $stmt = $db->prepare($sql);
@@ -49,18 +48,5 @@ class Front
         $session->invalidate();
 
         return new RedirectResponse('/');
-    }
-
-    public function getCabinet($request, $response)
-    {
-        $logged = $request->getSession()->get('logged');
-        if ($logged) {
-            $response->setContent('CABINET');
-        } else {
-            $response->setStatusCode('403');
-            $response->setContent('Forbidden.');
-        }
-
-        return $response;
     }
 }

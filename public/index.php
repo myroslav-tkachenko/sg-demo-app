@@ -23,15 +23,15 @@ $request->setSession($session);
 
 $routes = new RouteCollection();
 
+$routes->add('index', new Route('/', ['_controller' => 'App\Controller\Front@getIndex'],
+    [], [], '', [], ['GET']));
 $routes->add('get_login', new Route('/login', ['_controller' => 'App\Controller\Front@getLogin'],
     [], [], '', [], ['GET']));
 $routes->add('post_login', new Route('/login', ['_controller' => 'App\Controller\Front@postLogin'],
     [], [], '', [], ['POST']));
 $routes->add('logout', new Route('/logout', ['_controller' => 'App\Controller\Front@getLogout'],
     [], [], '', [], ['GET']));
-$routes->add('cabinet', new Route('/cabinet', ['_controller' => 'App\Controller\Front@getCabinet'],
-    [], [], '', [], ['GET']));
-$routes->add('index', new Route('/', ['_controller' => 'App\Controller\Front@getIndex'],
+$routes->add('cabinet', new Route('/cabinet', ['_controller' => 'App\Controller\Cabinet@getIndex'],
     [], [], '', [], ['GET']));
 
 $context = new RequestContext();
@@ -46,6 +46,9 @@ try {
 } catch (Symfony\Component\Routing\Exception\ResourceNotFoundException $e) {
     $response->setStatusCode('404');
     $response->setContent('404: Page not found');
+} catch (Symfony\Component\Routing\Exception\MethodNotAllowedException $e) {
+    $response->setStatusCode('405');
+    $response->setContent('405: Method not allowed');
 }
 
 if (isset($action) && is_string($action)) {
@@ -62,9 +65,9 @@ if (isset($action) && is_callable($action)) {
     $response = $action($request, $response);
 }
 
-if (! isset($action)) {
-    $response->setStatusCode('404');
-    $response->setContent('404: Page not found');
-}
+// if (! isset($action)) {
+//     $response->setStatusCode('404');
+//     $response->setContent('404: Page not found');
+// }
 
 $response->send();
