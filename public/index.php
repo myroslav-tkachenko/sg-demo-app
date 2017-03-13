@@ -41,6 +41,7 @@ $matcher = new UrlMatcher($routes, $context);
 
 try {
     $parameters = $matcher->matchRequest($request);
+    $request->attributes->replace($parameters);
     $action = $parameters['_controller'];
 } catch (Symfony\Component\Routing\Exception\ResourceNotFoundException $e) {
     $response->setStatusCode('404');
