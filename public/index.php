@@ -23,6 +23,8 @@ $request->setSession($session);
 
 $routes = new RouteCollection();
 
+$routes->add('test', new Route('/test', array('_controller' => 'Front:index')));
+
 $routes->add('get_login', new Route('/login', array('_controller' => function ($request, $response) {
     return $response->setContent('<form action="/login" method="POST">
         <input name="name">
@@ -89,10 +91,21 @@ try {
     $response->setContent('404: Page not found');
 }
 
+if (isset($action) && is_string($action)) {
+    $controller = explode(':', $action);
+
+    $controller_class_name = "App\Controller\\" . $controller[0];
+    $class = new $controller_class_name;
+    $method = $controller[1];
+
+    $response = $class->$method($request, $response);
+}
 
 if (isset($action) && is_callable($action)) {
     $response = $action($request, $response);
-} else {
+}
+
+if (! isset($action)) {
     $response->setStatusCode('404');
     $response->setContent('404: Page not found');
 }

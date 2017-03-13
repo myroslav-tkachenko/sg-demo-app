@@ -68,7 +68,7 @@
         },
         {
             "name": "symfony/http-foundation",
-            "version": "v3.2.5",
+            "version": "v3.2.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/http-foundation.git",
@@ -180,7 +180,7 @@
         },
         {
             "name": "symfony/routing",
-            "version": "v3.2.5",
+            "version": "v3.2.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/routing.git",

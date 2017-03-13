@@ -6,5 +6,10 @@
         "simplepie/simplepie": "^1.4",
         "symfony/http-foundation": "^3.2",
         "symfony/routing": "^3.2"
+    },
+    "autoload": {
+        "psr-4": {
+            "App\\": "src/" 
+        }
     }
 }
