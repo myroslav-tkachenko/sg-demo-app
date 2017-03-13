@@ -22,3 +22,11 @@ ALTER TABLE `news` CHANGE `pub_date` `pub_date` datetime NOT NULL AFTER `source`
 # alter table: change column type
 ALTER TABLE `news`
 CHANGE `description` `description` mediumtext COLLATE 'utf8_general_ci' NOT NULL AFTER `link`; 
+
+# add sources table
+CREATE TABLE `sources` (
+  `id` int unsigned NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  `name` varchar(255) NOT NULL,
+  `link` varchar(255) NOT NULL,
+  `feed` varchar(255) NOT NULL
+) ENGINE='InnoDB';

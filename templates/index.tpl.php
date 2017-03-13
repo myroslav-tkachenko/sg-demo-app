@@ -20,22 +20,24 @@
         <div class="container">
             <h1 class="text-center">My News Feed</h1>
 
-                <?php foreach($items as $item): ?>
-                <div class="panel panel-default">
-                      <div class="panel-heading">
-                            <h3 class="panel-title">
-                                <?=$item['id']?>
-                                <b><?=$item['pub_date']?></b>:
-                                <?=$item['title']?>
-                            </h3>
-                      </div>
-                      <div class="panel-body">
+            <hr>
+
+            <?php foreach ($items as $item) : ?>
+            <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">
+                            <?=$item['id']?>
+                            <b><?=$item['pub_date']?></b>:
                             <a href="<?=$item['link']?>" target="_blank">
-                                <?=$item['description']?>
+                                <?=$item['title']?>
                             </a>
-                      </div>
-                </div>
-                <?php endforeach; ?>
+                        </h3>
+                    </div>
+                    <div class="panel-body">
+                        <?=$item['description']?>
+                    </div>
+            </div>
+            <?php endforeach; ?>
             
         </div>
         
