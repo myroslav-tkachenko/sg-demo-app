@@ -55,10 +55,10 @@ if (isset($action) && is_string($action)) {
     $controller = explode('@', $action);
 
     $controller_class_name = $controller[0];
-    $class = new $controller_class_name;
+    $controller_instance = new $controller_class_name;
     $method = $controller[1];
 
-    $response = $class->$method($request, $response);
+    $response = $controller_instance->$method($request, $response);
 }
 
 if (isset($action) && is_callable($action)) {
